@@ -9,6 +9,9 @@ module.exports = {
       inset: {
         "72px": "72px",
       },
+      colors: {
+        "#F7FAFC": "#F7FAFC",
+      },
     },
   },
   plugins: [],
