@@ -51,13 +51,12 @@ export default function Menu() {
 
   return (
     <MenuLayout>
+      <div className="mt-4">
+        <h1 className="font-bold text-xl">
+          Halo Wintang, apa yang akan kamu pesan?
+        </h1>
+      </div>
       <section className="sticky top-[72px] bg-white">
-        <div className="mt-4">
-          <h1 className="font-bold text-xl">
-            Halo Wintang, apa yang akan kamu pesan?
-          </h1>
-        </div>
-
         <div className="flex bg-gray-100 rounded-md mt-4 px-4">
           <div className="flex items-center">
             <SearchIcon boxSize={5} color="#0000007A" />
@@ -75,7 +74,7 @@ export default function Menu() {
               {tabList.map((item, index) => {
                 return (
                   <ul key={index}>
-                    <li key={index}>
+                    <li key={index} className="outline-none">
                       <Link key={index} href={`#${item}`}>
                         <Tab className="font-bold text-xl" key={index}>
                           {item}
@@ -101,20 +100,23 @@ export default function Menu() {
               return (
                 <section
                   key={index}
-                  className="flex mb-4 bg-[#F7FAFC] rounded-t"
+                  className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
                 >
-                  <div className="w-4/12 p-4">
+                  <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
                     <img
-                      className="h-full w-full"
+                      className="h-full w-full object-contain"
                       src="/assets/images/uduk.svg"
+                      alt={item.name}
                     />
                   </div>
 
                   <div className="flex flex-col justify-around p-4">
-                    <h1 className="text-xl font-bold">{item.name}</h1>
-                    <div>
-                      <p>{textTruncate(item.description, 40)}</p>
-                    </div>
+                    <h1 className="text-xl font-bold mb-2">{item.name}</h1>
+                    <span title={item.description} className="mb-2">
+                      <p className="line-clamp-2 text-gray-500">
+                        {item.description}
+                      </p>
+                    </span>
                     <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
                   </div>
                 </section>
@@ -133,20 +135,23 @@ export default function Menu() {
               return (
                 <section
                   key={index}
-                  className="flex mb-4 bg-[#F7FAFC] rounded-t"
+                  className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
                 >
-                  <div className="w-4/12 p-4">
+                  <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
                     <img
-                      className="h-full w-full"
+                      className="h-full w-full object-contain"
                       src="/assets/images/uduk.svg"
+                      alt={item.name}
                     />
                   </div>
 
                   <div className="flex flex-col justify-around p-4">
-                    <h1 className="text-xl font-bold">{item.name}</h1>
-                    <div>
-                      <p>{textTruncate(item.description, 40)}</p>
-                    </div>
+                    <h1 className="text-xl font-bold mb-2">{item.name}</h1>
+                    <span title={item.description} className="mb-2">
+                      <p className="line-clamp-2 text-gray-500">
+                        {item.description}
+                      </p>
+                    </span>
                     <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
                   </div>
                 </section>
@@ -165,20 +170,23 @@ export default function Menu() {
               return (
                 <section
                   key={index}
-                  className="flex mb-4 bg-[#F7FAFC] rounded-t"
+                  className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
                 >
-                  <div className="w-4/12 p-4">
+                  <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
                     <img
-                      className="h-full w-full"
+                      className="h-full w-full object-contain"
                       src="/assets/images/uduk.svg"
+                      alt={item.name}
                     />
                   </div>
 
                   <div className="flex flex-col justify-around p-4">
-                    <h1 className="text-xl font-bold">{item.name}</h1>
-                    <div>
-                      <p>{textTruncate(item.description, 40)}</p>
-                    </div>
+                    <h1 className="text-xl font-bold mb-2">{item.name}</h1>
+                    <span title={item.description} className="mb-2">
+                      <p className="line-clamp-2 text-gray-500">
+                        {item.description}
+                      </p>
+                    </span>
                     <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
                   </div>
                 </section>
@@ -197,20 +205,23 @@ export default function Menu() {
               return (
                 <section
                   key={index}
-                  className="flex mb-4 bg-[#F7FAFC] rounded-t"
+                  className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
                 >
-                  <div className="w-4/12 p-4">
+                  <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
                     <img
-                      className="h-full w-full"
+                      className="h-full w-full object-contain"
                       src="/assets/images/uduk.svg"
+                      alt={item.name}
                     />
                   </div>
 
                   <div className="flex flex-col justify-around p-4">
-                    <h1 className="text-xl font-bold">{item.name}</h1>
-                    <div>
-                      <p>{textTruncate(item.description, 40)}</p>
-                    </div>
+                    <h1 className="text-xl font-bold mb-2">{item.name}</h1>
+                    <span title={item.description} className="mb-2">
+                      <p className="line-clamp-2 text-gray-500">
+                        {item.description}
+                      </p>
+                    </span>
                     <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
                   </div>
                 </section>
