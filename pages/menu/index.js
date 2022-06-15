@@ -1,13 +1,6 @@
 import { useState } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
-import {
-  Input,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-} from "@chakra-ui/react";
+import { Input, Tabs, TabList, Tab } from "@chakra-ui/react";
 import { MenuLayout } from "@/layouts";
 import Link from "next/link";
 
