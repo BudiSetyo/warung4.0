@@ -1,7 +1,7 @@
 import { Container } from "@chakra-ui/react";
 import { Navbar } from "@/components";
 
-export default ({ children, page }) => {
+const MenuLayout = ({ children, page }) => {
   return (
     <Container maxW="600px" px="24px">
       <main>
@@ -20,3 +20,5 @@ export default ({ children, page }) => {
     </Container>
   );
 };
+
+export default MenuLayout;

@@ -2,7 +2,7 @@ import { IconButton, Icon } from "@chakra-ui/react";
 import { BiCart } from "react-icons/bi";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 
-export default ({ page, cart }) => {
+const Navbar = ({ page, cart }) => {
   return (
     <>
       <nav className="sticky top-0 bg-white">
@@ -46,3 +46,5 @@ export default ({ page, cart }) => {
     </>
   );
 };
+
+export default Navbar;
