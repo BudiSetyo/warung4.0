@@ -1,5 +1,4 @@
 import HomeLayout from "./home";
-import MenuLayout from "./menu";
-import CheckoutLayout from "./checkout";
+import MainLayout from "./main";
 
-export { HomeLayout, MenuLayout, CheckoutLayout };
+export { HomeLayout, MainLayout };

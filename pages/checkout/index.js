@@ -1,4 +1,4 @@
-import { CheckoutLayout } from "@/layouts";
+import { MainLayout } from "@/layouts";
 import {
   InfoIcon,
   AddIcon,
@@ -6,7 +6,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import { IconButton, Button, Select } from "@chakra-ui/react";
-import { Footer } from "@/components";
+import { Footer, Navbar } from "@/components";
 
 export default function Menu() {
   const listOrder = [
@@ -23,8 +23,9 @@ export default function Menu() {
   ];
 
   return (
-    <CheckoutLayout page="Checkout">
-      <main className="bg-[#F7FAFC] mb-4 scroll-smooth">
+    <MainLayout>
+      <Navbar cart={false} page="Checkout" />
+      <main className="bg-[#F7FAFC] pt-16 mb-4 scroll-smooth">
         <section className="pt-4 mb-4 bg-white">
           <section>
             <div className="flex bg-orange-50 py-3 px-6 rounded-md">
@@ -91,31 +92,38 @@ export default function Menu() {
           <p className="mt-2 text-red-600">Harus dipilih</p>
         </section>
 
-        <section className="bg-white px-6 pt-4 pb-48">
-          <h1 className="text-xl font-bold">Ringkasan Pembayaran</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+        <section className="bg-white px-6 pt-4 pb-40">
+          <h1 className="text-xl font-bold mb-4">Ringkasan Pembayaran</h1>
+          <div className="border-b-2 mb-4">
+            <div className="flex justify-between pb-4">
+              <p>Harga</p>
+              <p>216.000</p>
+            </div>
+            <div className="flex justify-between pb-4">
+              <p>Diskon</p>
+              <p>0</p>
+            </div>
+          </div>
+          <div>
+            <div className="flex justify-between">
+              <p className="text-xl font-bold">Total Pembayaran</p>
+              <p className="text-xl font-bold">216.000</p>
+            </div>
+          </div>
         </section>
       </main>
 
       <Footer>
         <div className="mb-6">
-          <Button className="w-full" colorScheme="teal" variant="outline">
+          <Button className="w-full" colorScheme="gray" variant="outline">
             <p>Makin Hemat Pakai Voucher</p>
-            <ChevronRightIcon boxSize={6} />
+            <ChevronRightIcon boxSize={5} />
           </Button>
         </div>
         <div className="flex">
           <div className="w-1/2">
             <p>Total Tagihan</p>
-            <p>Rp 216.000</p>
+            <p className="text-xl font-bold">Rp 216.000</p>
           </div>
           <div className="w-full flex items-center">
             <Button className="w-full" colorScheme="teal">
@@ -124,6 +132,6 @@ export default function Menu() {
           </div>
         </div>
       </Footer>
-    </CheckoutLayout>
+    </MainLayout>
   );
 }
