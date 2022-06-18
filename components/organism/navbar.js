@@ -5,7 +5,7 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 const Navbar = ({ page, cart }) => {
   return (
     <>
-      <nav className="sticky top-0 bg-white">
+      <nav className="sticky top-0 bg-white z-10">
         <div className="flex justify-between py-4">
           {window.location.pathname === "/menu" ? (
             <>

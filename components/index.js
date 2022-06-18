@@ -1,3 +1,4 @@
 import Navbar from "./organism/navbar";
+import Footer from "./organism/footer";
 
-export { Navbar };
+export { Navbar, Footer };

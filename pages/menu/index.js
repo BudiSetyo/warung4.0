@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { Input, Tabs, TabList, Tab } from "@chakra-ui/react";
-import { AddIcon } from "@chakra-ui/icons";
 import { MenuLayout } from "@/layouts";
 import Link from "next/link";
+import Scrollspy from "react-scrollspy";
 
 export default function Menu() {
   const [tabIndex, setTabIndex] = useState(0);
@@ -163,6 +163,41 @@ export default function Menu() {
         <section>
           <h1 className="text-xl font-bold" id="Snack">
             Snack
+          </h1>
+
+          <section className="mt-4">
+            {popularData.map((item, index) => {
+              return (
+                <section
+                  key={index}
+                  className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
+                >
+                  <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
+                    <img
+                      className="h-full w-full object-contain"
+                      src="/assets/images/uduk.svg"
+                      alt={item.name}
+                    />
+                  </div>
+
+                  <div className="flex flex-col justify-around p-4">
+                    <h1 className="text-xl font-bold mb-2">{item.name}</h1>
+                    <span title={item.description} className="mb-2">
+                      <p className="line-clamp-2 text-gray-500">
+                        {item.description}
+                      </p>
+                    </span>
+                    <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
+                  </div>
+                </section>
+              );
+            })}
+          </section>
+        </section>
+
+        <section>
+          <h1 className="text-xl font-bold" id="Desert">
+            Desert
           </h1>
 
           <section className="mt-4">
