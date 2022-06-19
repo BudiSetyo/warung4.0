@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { SearchIcon } from "@chakra-ui/icons";
-import { Input, Tabs, TabList, Tab } from "@chakra-ui/react";
-import { AddIcon } from "@chakra-ui/icons";
-import { MenuLayout } from "@/layouts";
+import { Tabs, TabList, Tab } from "@chakra-ui/react";
+import { MainLayout } from "@/layouts";
 import Link from "next/link";
+import { Search } from "@/components";
+import { Navbar } from "@/components";
 
 export default function Menu() {
   const [tabIndex, setTabIndex] = useState(0);
@@ -34,37 +34,27 @@ export default function Menu() {
     },
   ];
 
-  const textTruncate = (str, length, ending) => {
-    if (!length) {
-      // eslint-disable-next-line no-param-reassign
-      length = 100;
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      console.log("do validate");
     }
-    if (!ending) {
-      // eslint-disable-next-line no-param-reassign
-      ending = "...";
-    }
-    if (str.length > length) {
-      return str.substring(0, length - ending.length) + ending;
-    }
-    return str;
   };
 
   return (
-    <MenuLayout>
-      <div className="mt-4">
-        <h1 className="font-bold text-xl">
-          Halo Wintang, apa yang akan kamu pesan?
-        </h1>
-      </div>
+    <MainLayout className="px-6">
+      <Navbar cart={true} />
       <section className="sticky top-[72px] bg-white">
-        <div className="flex bg-gray-100 rounded-md mt-4 px-4">
-          <div className="flex items-center">
-            <SearchIcon boxSize={5} color="#0000007A" />
-          </div>
-          <Input placeholder="Search" border="none" focusBorderColor="none" />
+        <div className="mt-4">
+          <h1 className="font-bold text-xl">
+            Halo Wintang, apa yang akan kamu pesan?
+          </h1>
         </div>
 
-        <div className="mt-4 overflow-auto">
+        <div className="mt-4">
+          <Search onKeyDown={handleKeyDown} />
+        </div>
+
+        <div className="overflow-auto">
           <Tabs
             onChange={(index) => setTabIndex(index)}
             index={tabIndex}
@@ -89,7 +79,7 @@ export default function Menu() {
         </div>
       </section>
 
-      <main className="scroll-smooth mt-4">
+      <main className="scroll-smooth pt-12 mt-4">
         <section>
           <h1 className="text-xl font-bold" id="Popular">
             Popular
@@ -196,6 +186,41 @@ export default function Menu() {
         </section>
 
         <section>
+          <h1 className="text-xl font-bold" id="Desert">
+            Desert
+          </h1>
+
+          <section className="mt-4">
+            {popularData.map((item, index) => {
+              return (
+                <section
+                  key={index}
+                  className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
+                >
+                  <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
+                    <img
+                      className="h-full w-full object-contain"
+                      src="/assets/images/uduk.svg"
+                      alt={item.name}
+                    />
+                  </div>
+
+                  <div className="flex flex-col justify-around p-4">
+                    <h1 className="text-xl font-bold mb-2">{item.name}</h1>
+                    <span title={item.description} className="mb-2">
+                      <p className="line-clamp-2 text-gray-500">
+                        {item.description}
+                      </p>
+                    </span>
+                    <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
+                  </div>
+                </section>
+              );
+            })}
+          </section>
+        </section>
+
+        <section>
           <h1 className="text-xl font-bold" id="Drink">
             Drink
           </h1>
@@ -230,6 +255,6 @@ export default function Menu() {
           </section>
         </section>
       </main>
-    </MenuLayout>
+    </MainLayout>
   );
 }

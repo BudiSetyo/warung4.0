@@ -1,3 +1,8 @@
-import Navbar from "./organism/navbar";
+// molecules
+import Search from "./molecules/search";
 
-export { Navbar };
+// organism
+import Navbar from "./organism/navbar";
+import Footer from "./organism/footer";
+
+export { Navbar, Footer, Search };
