@@ -1,15 +1,19 @@
 import { useState } from "react";
-import { Tabs, TabList, Tab } from "@chakra-ui/react";
+import { Tabs, TabList, Tab, Icon, Button } from "@chakra-ui/react";
+import { BiCart } from "react-icons/bi";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { MainLayout } from "@/layouts";
 import Link from "next/link";
 import { Search } from "@/components";
-import { Navbar } from "@/components";
+import { Navbar, Footer } from "@/components";
+import { useRouter } from "next/router";
 
 export default function Menu() {
   const [tabIndex, setTabIndex] = useState(0);
 
-  const tabList = ["Popular", "Breakfast", "Snack", "Desert", "Drink"];
+  const router = useRouter();
 
+  const tabList = ["Popular", "Breakfast", "Snack", "Desert", "Drink"];
   const popularData = [
     {
       name: "Nasi Uduk",
@@ -34,10 +38,24 @@ export default function Menu() {
     },
   ];
 
+  const cart = [
+    {
+      name: "Nasi Gulai",
+      price: "15.000",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      pict: "Nasi Gulai",
+    },
+  ];
+
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       console.log("do validate");
     }
+  };
+
+  const handleNavigate = (id) => {
+    return router.push(`/menu/detail/${id}`);
   };
 
   return (
@@ -79,7 +97,7 @@ export default function Menu() {
         </div>
       </section>
 
-      <main className="scroll-smooth pt-12 mt-4">
+      <main className="scroll-smooth pt-12 pb-24 mt-4">
         <section>
           <h1 className="text-xl font-bold" id="Popular">
             Popular
@@ -89,6 +107,7 @@ export default function Menu() {
             {popularData.map((item, index) => {
               return (
                 <section
+                  onClick={() => handleNavigate(item.name)}
                   key={index}
                   className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
                 >
@@ -255,6 +274,24 @@ export default function Menu() {
           </section>
         </section>
       </main>
+      {cart.length !== 0 ? (
+        <Footer>
+          <section>
+            <div className="flex ">
+              <Icon boxSize={7} as={BiCart} color="#000000CC" />
+              <h1 className="ml-3 text-xl font-bold">
+                {cart.length} makanan di keranjang
+              </h1>
+            </div>
+            <Button className="mt-6 w-full" colorScheme={"teal"}>
+              Selesaikan Pesanan
+              <ArrowForwardIcon className="ml-2.5" />
+            </Button>
+          </section>
+        </Footer>
+      ) : (
+        <></>
+      )}
     </MainLayout>
   );
 }
