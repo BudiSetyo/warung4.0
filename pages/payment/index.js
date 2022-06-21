@@ -12,7 +12,11 @@ export default function Payment() {
         <section className="mt-2 py-2">
           <div className="flex border-b-2 py-4">
             <div className="w-1/6 h-8">
-              <img className="w-full h-full" src="/assets/images/qr.svg" />
+              <img
+                alt="qr"
+                className="w-full h-full"
+                src="/assets/images/qr.svg"
+              />
             </div>
             <div
               variant={"none"}
@@ -25,7 +29,11 @@ export default function Payment() {
 
           <div className="flex border-b-2 py-4">
             <div className="w-1/6 h-8">
-              <img className="w-full h-full" src="/assets/images/cash.svg" />
+              <img
+                alt="cash"
+                className="w-full h-full"
+                src="/assets/images/cash.svg"
+              />
             </div>
             <div
               variant={"none"}

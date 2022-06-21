@@ -12,7 +12,10 @@ const Navbar = ({ page, cart }) => {
             {window.location.pathname === "/menu" ? (
               <>
                 <div>
-                  <img src="/assets/images/navbar-logo.svg"></img>
+                  <img
+                    alt="navbar-logo"
+                    src="/assets/images/navbar-logo.svg"
+                  ></img>
                 </div>
               </>
             ) : (

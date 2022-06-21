@@ -50,6 +50,7 @@ export default function Menu() {
                   >
                     <div className="w-[160px] min-w-[160px] h-[160px] p-2">
                       <img
+                        alt="uduk"
                         className="h-full w-full object-contain"
                         src="/assets/images/uduk.svg"
                       />

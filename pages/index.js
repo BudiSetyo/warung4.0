@@ -35,7 +35,11 @@ export default function Home() {
       <main>
         <section className="w-full mb-14 flex justify-center">
           <div className="max-w-lg max-h-80">
-            <img src="/assets/images/main-logo.svg" className="w-full h-full" />
+            <img
+              alt="logo"
+              src="/assets/images/main-logo.svg"
+              className="w-full h-full"
+            />
           </div>
         </section>
 

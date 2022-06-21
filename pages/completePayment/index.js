@@ -19,12 +19,20 @@ export default function CompletePayment() {
             <h1 className="text-xl font-bold">QRIS</h1>
 
             <div className="h-8">
-              <img className="h-full w-full" src="/assets/images/qr.svg" />
+              <img
+                alt="qr"
+                className="h-full w-full"
+                src="/assets/images/qr.svg"
+              />
             </div>
           </div>
 
           <div className="w-full pb-2 border-b-2">
-            <img className="w-full h-full" src="/assets/images/qr-code.svg" />
+            <img
+              alt="qr-code"
+              className="w-full h-full"
+              src="/assets/images/qr-code.svg"
+            />
           </div>
 
           <div className="mt-2 pb-6">
