@@ -14,7 +14,11 @@ export default function Id() {
       <main className="bg-[#F7FAFC] pt-20">
         <section className="flex justify-center">
           <div className="h-96 w-96">
-            <img className="w-full h-full" src="/assets/images/uduk.svg" />
+            <img
+              alt="uduk"
+              className="w-full h-full"
+              src="/assets/images/uduk.svg"
+            />
           </div>
         </section>
 
