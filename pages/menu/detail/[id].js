@@ -5,38 +5,39 @@ import { useRouter } from "next/router";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import { IconButton, Button } from "@chakra-ui/react";
 
+import { useSelector } from "react-redux";
+
 export default function Id() {
   const router = useRouter();
   const { id } = router.query;
+  const menuId = id;
+
+  const menu = useSelector((state) => state.menu);
+  const detailMenu = menu?.filter((item) => {
+    return item.id === menuId;
+  })[0];
+
   return (
     <MainLayout>
-      <Navbar page={id} cart={true} />
+      <Navbar page={detailMenu?.name} cart={true} />
       <main className="bg-[#F7FAFC] pt-20">
         <section className="flex justify-center">
           <div className="h-96 w-96">
             <img
               alt="uduk"
               className="w-full h-full"
-              src="/assets/images/uduk.svg"
+              src={`/assets/images/menu/${detailMenu?.img}.svg`}
             />
           </div>
         </section>
 
         <section className="bg-white px-6 py-5 pb-40 rounded-t-3xl">
-          <h1 className="text-2xl font-bold">{id}</h1>
-          <h2 className="text-lg font-bold mt-2">Rp. 18.000</h2>
+          <h1 className="text-2xl font-bold">{detailMenu?.name}</h1>
+          <h2 className="text-lg font-bold mt-2">Rp. {detailMenu?.price}</h2>
 
           <div className="mt-6 p-6 border-2 rounded-xl">
             <h1 className="text-base font-bold ">Deskripsi</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+            <p>{detailMenu?.description}</p>
           </div>
         </section>
       </main>

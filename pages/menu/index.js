@@ -7,50 +7,21 @@ import Link from "next/link";
 import { Search } from "@/components";
 import { Navbar, Footer } from "@/components";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 export default function Menu() {
   const [tabIndex, setTabIndex] = useState(0);
+  const menu = useSelector((state) => state.menu);
 
   const router = useRouter();
 
-  const tabList = ["Popular", "Breakfast", "Snack", "Desert", "Drink"];
-  const popularData = [
-    {
-      name: "Nasi Uduk",
-      price: "15.000",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      pict: "Nasi Uduk",
-    },
-    {
-      name: "Nasi Padang",
-      price: "15.000",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      pict: "Nasi Padang",
-    },
-    {
-      name: "Nasi Gulai",
-      price: "15.000",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      pict: "Nasi Gulai",
-    },
-  ];
+  const tabList = ["Dahsyat", "Paket", "Geprek", "Western", "Drink"];
 
-  const cart = [
-    {
-      name: "Nasi Gulai",
-      price: "15.000",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      pict: "Nasi Gulai",
-    },
-  ];
+  const cart = [];
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      console.log("do validate");
+      console.log("click");
     }
   };
 
@@ -97,145 +68,168 @@ export default function Menu() {
         </div>
       </section>
 
-      <main className="scroll-smooth pt-12 pb-24 mt-4">
+      <main
+        className={`scroll-smooth pt-12 ${
+          cart.length !== 0 ? "pb-24" : ""
+        } mt-4`}
+      >
         <section>
-          <h1 className="text-xl font-bold" id="Popular">
-            Popular
+          <h1 className="text-xl font-bold" id="Dahsyat">
+            Dahsyat
           </h1>
 
           <section className="mt-4">
-            {popularData.map((item, index) => {
-              return (
-                <section
-                  onClick={() => handleNavigate(item.name)}
-                  key={index}
-                  className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
-                >
-                  <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
-                    <img
-                      className="h-full w-full object-contain"
-                      src="/assets/images/uduk.svg"
-                      alt={item.name}
-                    />
-                  </div>
+            {menu
+              .filter((item) => {
+                return item.category === "dahsyat";
+              })
+              .map((item, index) => {
+                return (
+                  <section
+                    onClick={() => handleNavigate(item.id)}
+                    key={index}
+                    className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
+                  >
+                    <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
+                      <img
+                        className="h-full w-full object-contain"
+                        src={`/assets/images/menu/${item.img}.svg`}
+                        alt={item.name}
+                      />
+                    </div>
 
-                  <div className="flex flex-col justify-around p-4">
-                    <h1 className="text-xl font-bold mb-2">{item.name}</h1>
-                    <span title={item.description} className="mb-2">
-                      <p className="line-clamp-2 text-gray-500">
-                        {item.description}
-                      </p>
-                    </span>
-                    <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
-                  </div>
-                </section>
-              );
-            })}
+                    <div className="flex flex-col justify-around p-4">
+                      <h1 className="text-xl font-bold mb-2">{item.name}</h1>
+                      <span title={item.description} className="mb-2">
+                        <p className="line-clamp-2 text-gray-500">
+                          {item.description}
+                        </p>
+                      </span>
+                      <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
+                    </div>
+                  </section>
+                );
+              })}
           </section>
         </section>
 
         <section>
-          <h1 className="text-xl font-bold" id="Breakfast">
-            Breakfast
+          <h1 className="text-xl font-bold" id="Paket">
+            Paket
           </h1>
 
           <section className="mt-4">
-            {popularData.map((item, index) => {
-              return (
-                <section
-                  key={index}
-                  className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
-                >
-                  <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
-                    <img
-                      className="h-full w-full object-contain"
-                      src="/assets/images/uduk.svg"
-                      alt={item.name}
-                    />
-                  </div>
+            {menu
+              .filter((item) => {
+                return item.category === "paket";
+              })
+              .map((item, index) => {
+                return (
+                  <section
+                    onClick={() => handleNavigate(item.id)}
+                    key={index}
+                    className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
+                  >
+                    <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
+                      <img
+                        className="h-full w-full object-contain"
+                        src={`/assets/images/menu/${item.img}.svg`}
+                        alt={item.name}
+                      />
+                    </div>
 
-                  <div className="flex flex-col justify-around p-4">
-                    <h1 className="text-xl font-bold mb-2">{item.name}</h1>
-                    <span title={item.description} className="mb-2">
-                      <p className="line-clamp-2 text-gray-500">
-                        {item.description}
-                      </p>
-                    </span>
-                    <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
-                  </div>
-                </section>
-              );
-            })}
+                    <div className="flex flex-col justify-around p-4">
+                      <h1 className="text-xl font-bold mb-2">{item.name}</h1>
+                      <span title={item.description} className="mb-2">
+                        <p className="line-clamp-2 text-gray-500">
+                          {item.description}
+                        </p>
+                      </span>
+                      <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
+                    </div>
+                  </section>
+                );
+              })}
           </section>
         </section>
 
         <section>
-          <h1 className="text-xl font-bold" id="Snack">
-            Snack
+          <h1 className="text-xl font-bold" id="Geprek">
+            Geprek
           </h1>
 
           <section className="mt-4">
-            {popularData.map((item, index) => {
-              return (
-                <section
-                  key={index}
-                  className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
-                >
-                  <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
-                    <img
-                      className="h-full w-full object-contain"
-                      src="/assets/images/uduk.svg"
-                      alt={item.name}
-                    />
-                  </div>
+            {menu
+              .filter((item) => {
+                return item.category === "geprek";
+              })
+              .map((item, index) => {
+                return (
+                  <section
+                    onClick={() => handleNavigate(item.id)}
+                    key={index}
+                    className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
+                  >
+                    <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
+                      <img
+                        className="h-full w-full object-contain"
+                        src={`/assets/images/menu/${item.img}.svg`}
+                        alt={item.name}
+                      />
+                    </div>
 
-                  <div className="flex flex-col justify-around p-4">
-                    <h1 className="text-xl font-bold mb-2">{item.name}</h1>
-                    <span title={item.description} className="mb-2">
-                      <p className="line-clamp-2 text-gray-500">
-                        {item.description}
-                      </p>
-                    </span>
-                    <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
-                  </div>
-                </section>
-              );
-            })}
+                    <div className="flex flex-col justify-around p-4">
+                      <h1 className="text-xl font-bold mb-2">{item.name}</h1>
+                      <span title={item.description} className="mb-2">
+                        <p className="line-clamp-2 text-gray-500">
+                          {item.description}
+                        </p>
+                      </span>
+                      <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
+                    </div>
+                  </section>
+                );
+              })}
           </section>
         </section>
 
         <section>
-          <h1 className="text-xl font-bold" id="Desert">
-            Desert
+          <h1 className="text-xl font-bold" id="Western">
+            Western
           </h1>
 
           <section className="mt-4">
-            {popularData.map((item, index) => {
-              return (
-                <section
-                  key={index}
-                  className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
-                >
-                  <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
-                    <img
-                      className="h-full w-full object-contain"
-                      src="/assets/images/uduk.svg"
-                      alt={item.name}
-                    />
-                  </div>
+            {menu
+              .filter((item) => {
+                return item.category === "western";
+              })
+              .map((item, index) => {
+                return (
+                  <section
+                    onClick={() => handleNavigate(item.id)}
+                    key={index}
+                    className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
+                  >
+                    <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
+                      <img
+                        className="h-full w-full object-contain"
+                        src={`/assets/images/menu/${item.img}.svg`}
+                        alt={item.name}
+                      />
+                    </div>
 
-                  <div className="flex flex-col justify-around p-4">
-                    <h1 className="text-xl font-bold mb-2">{item.name}</h1>
-                    <span title={item.description} className="mb-2">
-                      <p className="line-clamp-2 text-gray-500">
-                        {item.description}
-                      </p>
-                    </span>
-                    <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
-                  </div>
-                </section>
-              );
-            })}
+                    <div className="flex flex-col justify-around p-4">
+                      <h1 className="text-xl font-bold mb-2">{item.name}</h1>
+                      <span title={item.description} className="mb-2">
+                        <p className="line-clamp-2 text-gray-500">
+                          {item.description}
+                        </p>
+                      </span>
+                      <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
+                    </div>
+                  </section>
+                );
+              })}
           </section>
         </section>
 
@@ -245,32 +239,37 @@ export default function Menu() {
           </h1>
 
           <section className="mt-4">
-            {popularData.map((item, index) => {
-              return (
-                <section
-                  key={index}
-                  className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
-                >
-                  <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
-                    <img
-                      className="h-full w-full object-contain"
-                      src="/assets/images/uduk.svg"
-                      alt={item.name}
-                    />
-                  </div>
+            {menu
+              .filter((item) => {
+                return item.category === "drink";
+              })
+              .map((item, index) => {
+                return (
+                  <section
+                    onClick={() => handleNavigate(item.id)}
+                    key={index}
+                    className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
+                  >
+                    <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
+                      <img
+                        className="h-full w-full object-contain"
+                        src={`/assets/images/menu/${item.img}.svg`}
+                        alt={item.name}
+                      />
+                    </div>
 
-                  <div className="flex flex-col justify-around p-4">
-                    <h1 className="text-xl font-bold mb-2">{item.name}</h1>
-                    <span title={item.description} className="mb-2">
-                      <p className="line-clamp-2 text-gray-500">
-                        {item.description}
-                      </p>
-                    </span>
-                    <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
-                  </div>
-                </section>
-              );
-            })}
+                    <div className="flex flex-col justify-around p-4">
+                      <h1 className="text-xl font-bold mb-2">{item.name}</h1>
+                      <span title={item.description} className="mb-2">
+                        <p className="line-clamp-2 text-gray-500">
+                          {item.description}
+                        </p>
+                      </span>
+                      <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
+                    </div>
+                  </section>
+                );
+              })}
           </section>
         </section>
       </main>
