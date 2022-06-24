@@ -7,20 +7,14 @@ import {
 } from "@chakra-ui/icons";
 import { IconButton, Button, Select } from "@chakra-ui/react";
 import { Footer, Navbar } from "@/components";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 export default function Menu() {
-  const listOrder = [
-    {
-      name: "nasi uduk",
-      price: 18000,
-      count: 2,
-    },
-    {
-      name: "nasi padang",
-      price: 18000,
-      count: 5,
-    },
-  ];
+  const cartData = useSelector((state) => state.cart);
+  console.log(cartData);
+
+  const router = useRouter();
 
   return (
     <MainLayout>
@@ -40,19 +34,19 @@ export default function Menu() {
             <h1 className="text-xl font-bold">Daftar Pesanan</h1>
 
             <section className="px-6">
-              {listOrder.map((item, index) => {
+              {cartData?.map((item, index) => {
                 return (
                   <div
                     key={index}
                     className={`flex py-4 ${
-                      index === listOrder.length - 1 ? "" : "border-b-2"
+                      index === cartData.length - 1 ? "" : "border-b-2"
                     }`}
                   >
                     <div className="w-[160px] min-w-[160px] h-[160px] p-2">
                       <img
                         alt="uduk"
                         className="h-full w-full object-contain"
-                        src="/assets/images/uduk.svg"
+                        src={`/assets/images/menu/${item.img}.svg`}
                       />
                     </div>
 
@@ -116,7 +110,12 @@ export default function Menu() {
 
       <Footer>
         <div className="mb-6">
-          <Button className="w-full" colorScheme="gray" variant="outline">
+          <Button
+            onClick={() => router.push("/voucher")}
+            className="w-full"
+            colorScheme="gray"
+            variant="outline"
+          >
             <p>Makin Hemat Pakai Voucher</p>
             <ChevronRightIcon boxSize={5} />
           </Button>

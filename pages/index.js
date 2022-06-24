@@ -9,12 +9,15 @@ import {
 } from "@chakra-ui/react";
 import { HomeLayout } from "@/layouts";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { userLogin } from "@/configs";
 
 export default function Home() {
   const [input, setInput] = useState("");
   const [isError, setIsError] = useState(false);
 
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     setIsError(false);
@@ -22,11 +25,14 @@ export default function Home() {
   };
 
   const handleClick = (e) => {
+    e.preventDefault();
+
     if (input === "") {
       return setIsError(true);
+    } else {
+      dispatch(userLogin(input));
     }
 
-    e.preventDefault();
     return router.push("/menu");
   };
 

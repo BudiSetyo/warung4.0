@@ -11,13 +11,16 @@ import { useSelector } from "react-redux";
 
 export default function Menu() {
   const [tabIndex, setTabIndex] = useState(0);
+
   const menu = useSelector((state) => state.menu);
+  const user = useSelector((state) => state.user);
+  const cart = useSelector((state) => state.cart);
+
+  console.log(cart);
 
   const router = useRouter();
 
   const tabList = ["Dahsyat", "Paket", "Geprek", "Western", "Drink"];
-
-  const cart = [];
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -35,7 +38,7 @@ export default function Menu() {
       <section className="sticky top-[72px] bg-white">
         <div className="mt-4">
           <h1 className="font-bold text-xl">
-            Halo Wintang, apa yang akan kamu pesan?
+            Halo {user.userName}, apa yang akan kamu pesan?
           </h1>
         </div>
 
@@ -282,7 +285,13 @@ export default function Menu() {
                 {cart.length} makanan di keranjang
               </h1>
             </div>
-            <Button className="mt-6 w-full" colorScheme={"teal"}>
+            <Button
+              onClick={() => {
+                router.push("/checkout");
+              }}
+              className="mt-6 w-full"
+              colorScheme={"teal"}
+            >
               Selesaikan Pesanan
               <ArrowForwardIcon className="ml-2.5" />
             </Button>

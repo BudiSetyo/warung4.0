@@ -1,20 +1,12 @@
 const initialValue = {
-  userData: [],
-  userDataID: [],
-  errorMsg: [],
+  userName: "",
 };
 const userReducer = (state = initialValue, action) => {
   switch (action.type) {
-    case "LOGOUT":
+    case "USER_LOGIN":
       return {
         ...state,
-        userData: [],
-        userDataID: [],
-        errorMsg: [],
-      };
-    case "UPDATE_USER":
-      return {
-        ...state,
+        userName: action.payload,
       };
 
     default:

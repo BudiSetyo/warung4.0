@@ -5,10 +5,16 @@ import { useRouter } from "next/router";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import { IconButton, Button } from "@chakra-ui/react";
 
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addCart } from "@/configs";
 
 export default function Id() {
+  const [countMenu, setCountMenu] = useState(0);
+  const [cartData, setCartData] = useState([]);
+
   const router = useRouter();
+  const dispatch = useDispatch();
   const { id } = router.query;
   const menuId = id;
 
@@ -16,6 +22,31 @@ export default function Id() {
   const detailMenu = menu?.filter((item) => {
     return item.id === menuId;
   })[0];
+
+  const cart = useSelector((state) => state.cart);
+  console.log(cart);
+
+  const handleCart = () => {
+    setCartData([
+      {
+        name: detailMenu?.name,
+        price: detailMenu?.price,
+        img: detailMenu?.img,
+        count: countMenu,
+      },
+    ]);
+    dispatch(addCart(cartData));
+  };
+
+  const handleMin = () => {
+    if (countMenu > 0) {
+      setCountMenu(countMenu - 1);
+    }
+  };
+
+  const handlePlus = () => {
+    setCountMenu(countMenu + 1);
+  };
 
   return (
     <MainLayout>
@@ -52,19 +83,25 @@ export default function Id() {
                 colorScheme={"teal"}
                 variant="outline"
                 icon={<MinusIcon />}
+                onClick={handleMin}
               />
-              <p className="text-xl font-bold mx-4">2</p>
+              <p className="text-xl font-bold mx-4">{countMenu}</p>
               <IconButton
                 size={"sm"}
                 isRound={true}
                 colorScheme={"teal"}
                 variant="outline"
                 icon={<AddIcon />}
+                onClick={handlePlus}
               />
             </div>
           </div>
-          <Button className="w-full mt-6" colorScheme={"teal"}>
-            Tambah Pesanan - 36.000
+          <Button
+            onClick={handleCart}
+            className="w-full mt-6"
+            colorScheme={"teal"}
+          >
+            Tambah Pesanan - {countMenu * detailMenu?.price}
           </Button>
         </section>
       </Footer>
