@@ -1,8 +1,10 @@
 import { MainLayout } from "@/layouts";
 import { Navbar } from "@/components";
 import { Button } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 export default function CompletePayment() {
+  const router = useRouter();
   return (
     <MainLayout>
       <Navbar page={"Pilih Pembayaran"} />
@@ -36,7 +38,11 @@ export default function CompletePayment() {
           </div>
 
           <div className="mt-2 pb-6">
-            <Button className="w-full" colorScheme={"teal"}>
+            <Button
+              onClick={() => router.push("/queue")}
+              className="w-full"
+              colorScheme={"teal"}
+            >
               Bayar Sekarang
             </Button>
           </div>

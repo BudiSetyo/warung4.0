@@ -12,9 +12,13 @@ import { useSelector } from "react-redux";
 
 export default function Menu() {
   const cartData = useSelector((state) => state.cart);
-  console.log(cartData);
 
   const router = useRouter();
+
+  const totalPayment = cartData.map((item) => item.price * item.count);
+  const sumPayment = totalPayment.reduce((total, index) => total + index);
+
+  const diskon = 40000;
 
   return (
     <MainLayout>
@@ -92,17 +96,17 @@ export default function Menu() {
           <div className="border-b-2 mb-4">
             <div className="flex justify-between pb-4">
               <p>Harga</p>
-              <p>216.000</p>
+              <p>{sumPayment}</p>
             </div>
             <div className="flex justify-between pb-4">
               <p>Diskon</p>
-              <p>0</p>
+              <p>{diskon}</p>
             </div>
           </div>
           <div>
             <div className="flex justify-between">
               <p className="text-xl font-bold">Total Pembayaran</p>
-              <p className="text-xl font-bold">216.000</p>
+              <p className="text-xl font-bold">{sumPayment - diskon}</p>
             </div>
           </div>
         </section>
@@ -123,10 +127,14 @@ export default function Menu() {
         <div className="flex">
           <div className="w-1/2">
             <p>Total Tagihan</p>
-            <p className="text-xl font-bold">Rp 216.000</p>
+            <p className="text-xl font-bold">Rp {sumPayment - diskon}</p>
           </div>
           <div className="w-full flex items-center">
-            <Button className="w-full" colorScheme="teal">
+            <Button
+              onClick={() => router.push("/payment")}
+              className="w-full"
+              colorScheme="teal"
+            >
               Pilih Pembayaran
             </Button>
           </div>

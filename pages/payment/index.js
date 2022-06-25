@@ -1,8 +1,10 @@
 import { MainLayout } from "@/layouts";
 import { Navbar } from "@/components";
 import { ChevronRightIcon } from "@chakra-ui/icons";
+import { useRouter } from "next/router";
 
 export default function Payment() {
+  const router = useRouter();
   return (
     <MainLayout>
       <Navbar page="Pilih Pembayaran" />
@@ -10,7 +12,10 @@ export default function Payment() {
         <h1 className="text-xl font-bold">Mau bayar dengan metode apa?</h1>
 
         <section className="mt-2 py-2">
-          <div className="flex border-b-2 py-4">
+          <div
+            onClick={() => router.push("/completePayment")}
+            className="flex border-b-2 py-4"
+          >
             <div className="w-1/6 h-8">
               <img
                 alt="qr"
@@ -18,16 +23,16 @@ export default function Payment() {
                 src="/assets/images/qr.svg"
               />
             </div>
-            <div
-              variant={"none"}
-              className="flex ml-3 justify-between items-center w-full"
-            >
+            <div className="flex ml-3 justify-between items-center w-full">
               <p className="font-bold">Bayar dengan QRIS</p>
               <ChevronRightIcon boxSize={6} />
             </div>
           </div>
 
-          <div className="flex border-b-2 py-4">
+          <div
+            onClick={() => router.push("/queue")}
+            className="flex border-b-2 py-4"
+          >
             <div className="w-1/6 h-8">
               <img
                 alt="cash"
@@ -35,10 +40,7 @@ export default function Payment() {
                 src="/assets/images/cash.svg"
               />
             </div>
-            <div
-              variant={"none"}
-              className="flex ml-3 justify-between items-center w-full"
-            >
+            <div className="flex ml-3 justify-between items-center w-full">
               <p className="font-bold">Bayar di kasir</p>
               <ChevronRightIcon boxSize={6} />
             </div>

@@ -27,15 +27,19 @@ export default function Id() {
   console.log(cart);
 
   const handleCart = () => {
-    setCartData([
-      {
-        name: detailMenu?.name,
-        price: detailMenu?.price,
-        img: detailMenu?.img,
-        count: countMenu,
-      },
-    ]);
-    dispatch(addCart(cartData));
+    if (countMenu !== 0) {
+      setCartData([
+        {
+          id: detailMenu?.id,
+          name: detailMenu?.name,
+          price: detailMenu?.price,
+          img: detailMenu?.img,
+          count: countMenu,
+        },
+      ]);
+      return dispatch(addCart(cartData));
+    }
+    return;
   };
 
   const handleMin = () => {
