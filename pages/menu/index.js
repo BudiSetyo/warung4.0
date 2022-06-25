@@ -12,6 +12,8 @@ import { useSelector } from "react-redux";
 export default function Menu() {
   const [tabIndex, setTabIndex] = useState(0);
 
+  const [search, setSearch] = useState("");
+
   const menu = useSelector((state) => state.menu);
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
@@ -20,14 +22,35 @@ export default function Menu() {
 
   const tabList = ["Dahsyat", "Paket", "Geprek", "Western", "Drink"];
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      console.log("click");
-    }
-  };
-
   const handleNavigate = (id) => {
     return router.push(`/menu/detail/${id}`);
+  };
+
+  const sortAndFilter = (data, searchString) => {
+    const newData = data.filter(
+      (item) =>
+        (item.name || "")
+          .toLowerCase()
+          .indexOf((searchString || "").toLowerCase()) !== -1
+    );
+
+    let categoryData = {};
+
+    tabList.map((category) => {
+      const lowercategory = (category || "").toLowerCase();
+
+      const findFoods = newData.filter(
+        (food) => (food.category || "").toLowerCase() === lowercategory
+      );
+
+      if (!categoryData[lowercategory] && findFoods.length) {
+        categoryData[lowercategory] = [];
+
+        categoryData[lowercategory] = findFoods;
+      }
+    });
+
+    return categoryData;
   };
 
   return (
@@ -41,7 +64,7 @@ export default function Menu() {
         </div>
 
         <div className="mt-4">
-          <Search onKeyDown={handleKeyDown} />
+          <Search value={search} onChange={(e) => setSearch(e.target.value)} />
         </div>
 
         <div className="overflow-auto">
@@ -51,19 +74,24 @@ export default function Menu() {
             colorScheme="teal"
           >
             <TabList>
-              {tabList.map((item, index) => {
-                return (
-                  <ul key={index}>
-                    <li key={index} className="outline-none">
-                      <Link key={index} href={`#${item}`}>
-                        <Tab className="font-bold text-xl" key={index}>
-                          {item}
-                        </Tab>
-                      </Link>
-                    </li>
-                  </ul>
-                );
-              })}
+              {(Object.keys(sortAndFilter(menu, search)) || []).map(
+                (item, index) => {
+                  return (
+                    <ul key={index}>
+                      <li key={index} className="outline-none">
+                        <Link key={index} href={`#${item}`}>
+                          <Tab
+                            className="font-bold text-xl capitalize"
+                            key={index}
+                          >
+                            {item}
+                          </Tab>
+                        </Link>
+                      </li>
+                    </ul>
+                  );
+                }
+              )}
             </TabList>
           </Tabs>
         </div>
@@ -74,22 +102,19 @@ export default function Menu() {
           cart.length !== 0 ? "pb-24" : ""
         } mt-4`}
       >
-        <section>
-          <h1 className="text-xl font-bold" id="Dahsyat">
-            Dahsyat
-          </h1>
+        {(Object.keys(sortAndFilter(menu, search)) || []).map((key, index) => (
+          <section key={index}>
+            <h1 className="text-xl font-bold capitalize" id={key}>
+              {key}
+            </h1>
 
-          <section className="mt-4">
-            {menu
-              .filter((item) => {
-                return item.category === "dahsyat";
-              })
-              .map((item, index) => {
+            <section className="mt-4">
+              {sortAndFilter(menu, search)[key].map((item, index) => {
                 return (
                   <section
                     onClick={() => handleNavigate(item.id)}
                     key={index}
-                    className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
+                    className="flex items-start mb-4 bg-[#F7FAFC] rounded-t cursor-pointer"
                   >
                     <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
                       <img
@@ -111,168 +136,9 @@ export default function Menu() {
                   </section>
                 );
               })}
+            </section>
           </section>
-        </section>
-
-        <section>
-          <h1 className="text-xl font-bold" id="Paket">
-            Paket
-          </h1>
-
-          <section className="mt-4">
-            {menu
-              .filter((item) => {
-                return item.category === "paket";
-              })
-              .map((item, index) => {
-                return (
-                  <section
-                    onClick={() => handleNavigate(item.id)}
-                    key={index}
-                    className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
-                  >
-                    <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
-                      <img
-                        className="h-full w-full object-contain"
-                        src={`/assets/images/menu/${item.img}.svg`}
-                        alt={item.name}
-                      />
-                    </div>
-
-                    <div className="flex flex-col justify-around p-4">
-                      <h1 className="text-xl font-bold mb-2">{item.name}</h1>
-                      <span title={item.description} className="mb-2">
-                        <p className="line-clamp-2 text-gray-500">
-                          {item.description}
-                        </p>
-                      </span>
-                      <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
-                    </div>
-                  </section>
-                );
-              })}
-          </section>
-        </section>
-
-        <section>
-          <h1 className="text-xl font-bold" id="Geprek">
-            Geprek
-          </h1>
-
-          <section className="mt-4">
-            {menu
-              .filter((item) => {
-                return item.category === "geprek";
-              })
-              .map((item, index) => {
-                return (
-                  <section
-                    onClick={() => handleNavigate(item.id)}
-                    key={index}
-                    className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
-                  >
-                    <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
-                      <img
-                        className="h-full w-full object-contain"
-                        src={`/assets/images/menu/${item.img}.svg`}
-                        alt={item.name}
-                      />
-                    </div>
-
-                    <div className="flex flex-col justify-around p-4">
-                      <h1 className="text-xl font-bold mb-2">{item.name}</h1>
-                      <span title={item.description} className="mb-2">
-                        <p className="line-clamp-2 text-gray-500">
-                          {item.description}
-                        </p>
-                      </span>
-                      <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
-                    </div>
-                  </section>
-                );
-              })}
-          </section>
-        </section>
-
-        <section>
-          <h1 className="text-xl font-bold" id="Western">
-            Western
-          </h1>
-
-          <section className="mt-4">
-            {menu
-              .filter((item) => {
-                return item.category === "western";
-              })
-              .map((item, index) => {
-                return (
-                  <section
-                    onClick={() => handleNavigate(item.id)}
-                    key={index}
-                    className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
-                  >
-                    <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
-                      <img
-                        className="h-full w-full object-contain"
-                        src={`/assets/images/menu/${item.img}.svg`}
-                        alt={item.name}
-                      />
-                    </div>
-
-                    <div className="flex flex-col justify-around p-4">
-                      <h1 className="text-xl font-bold mb-2">{item.name}</h1>
-                      <span title={item.description} className="mb-2">
-                        <p className="line-clamp-2 text-gray-500">
-                          {item.description}
-                        </p>
-                      </span>
-                      <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
-                    </div>
-                  </section>
-                );
-              })}
-          </section>
-        </section>
-
-        <section>
-          <h1 className="text-xl font-bold" id="Drink">
-            Drink
-          </h1>
-
-          <section className="mt-4">
-            {menu
-              .filter((item) => {
-                return item.category === "drink";
-              })
-              .map((item, index) => {
-                return (
-                  <section
-                    onClick={() => handleNavigate(item.id)}
-                    key={index}
-                    className="flex items-start mb-4 bg-[#F7FAFC] rounded-t"
-                  >
-                    <div className="w-[160px] min-w-[160px] h-[160px] p-2 ">
-                      <img
-                        className="h-full w-full object-contain"
-                        src={`/assets/images/menu/${item.img}.svg`}
-                        alt={item.name}
-                      />
-                    </div>
-
-                    <div className="flex flex-col justify-around p-4">
-                      <h1 className="text-xl font-bold mb-2">{item.name}</h1>
-                      <span title={item.description} className="mb-2">
-                        <p className="line-clamp-2 text-gray-500">
-                          {item.description}
-                        </p>
-                      </span>
-                      <h1 className="text-xl font-bold">{`Rp. ${item.price}`}</h1>
-                    </div>
-                  </section>
-                );
-              })}
-          </section>
-        </section>
+        ))}
       </main>
       {cart.length !== 0 ? (
         <Footer>
