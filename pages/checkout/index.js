@@ -19,7 +19,7 @@ export default function Menu() {
   const totalPayment = cartData?.map((item) => item.price * item.count);
   const sumPayment = totalPayment.reduce((total, index) => total + index);
 
-  const diskon = diskonData?.diskon || 0;
+  const diskon = diskonData?.diskon;
 
   return (
     <MainLayout>
