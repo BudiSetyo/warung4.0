@@ -12,13 +12,14 @@ import { useSelector } from "react-redux";
 
 export default function Menu() {
   const cartData = useSelector((state) => state.cart);
+  const diskonData = useSelector((state) => state.diskon);
 
   const router = useRouter();
 
-  const totalPayment = cartData.map((item) => item.price * item.count);
+  const totalPayment = cartData?.map((item) => item.price * item.count);
   const sumPayment = totalPayment.reduce((total, index) => total + index);
 
-  const diskon = 40000;
+  const diskon = diskonData?.diskon || 0;
 
   return (
     <MainLayout>
@@ -100,13 +101,13 @@ export default function Menu() {
             </div>
             <div className="flex justify-between pb-4">
               <p>Diskon</p>
-              <p>{diskon}</p>
+              <p>{diskon.diskon}</p>
             </div>
           </div>
           <div>
             <div className="flex justify-between">
               <p className="text-xl font-bold">Total Pembayaran</p>
-              <p className="text-xl font-bold">{sumPayment - diskon}</p>
+              <p className="text-xl font-bold">{sumPayment - diskon.diskon}</p>
             </div>
           </div>
         </section>
@@ -115,23 +116,39 @@ export default function Menu() {
       <Footer>
         <div className="mb-6">
           <Button
-            onClick={() => router.push("/voucher")}
+            onClick={(e) => {
+              e.preventDefault;
+              router.push("/voucher");
+            }}
             className="w-full"
             colorScheme="gray"
             variant="outline"
           >
-            <p>Makin Hemat Pakai Voucher</p>
-            <ChevronRightIcon boxSize={5} />
+            <div>
+              {diskon ? (
+                <>
+                  <h1 className="text-xl text-gray-600">{`Kode: ${diskon.code}`}</h1>
+                </>
+              ) : (
+                <>
+                  <p>Makin Hemat Pakai Voucher</p>
+                  <ChevronRightIcon boxSize={5} />
+                </>
+              )}
+            </div>
           </Button>
         </div>
         <div className="flex">
           <div className="w-1/2">
             <p>Total Tagihan</p>
-            <p className="text-xl font-bold">Rp {sumPayment - diskon}</p>
+            <p className="text-xl font-bold">Rp {sumPayment - diskon.diskon}</p>
           </div>
           <div className="w-full flex items-center">
             <Button
-              onClick={() => router.push("/payment")}
+              onClick={(e) => {
+                e.preventDefault;
+                return router.push("/payment");
+              }}
               className="w-full"
               colorScheme="teal"
             >

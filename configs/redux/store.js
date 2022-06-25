@@ -4,6 +4,7 @@ import { persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
 import rootReducers from "../redux/reducers/index";
 import dummyData from "../../helpers/dummyData/menu.json";
+import dummyVoucher from "../../helpers/dummyData/voucher.json";
 import idGenerator from "helpers/idGenerator";
 
 const menuData = dummyData.map((item) => {
@@ -30,6 +31,7 @@ const store = configureStore({
   middleware: [thunk],
   preloadedState: {
     menu: menuData,
+    voucher: dummyVoucher,
   },
 });
 

@@ -26,7 +26,9 @@ export default function Id() {
   const cart = useSelector((state) => state.cart);
   console.log(cart);
 
-  const handleCart = () => {
+  const handleCart = (e) => {
+    e.preventDefault();
+
     if (countMenu !== 0) {
       setCartData([
         {
@@ -39,16 +41,18 @@ export default function Id() {
       ]);
       return dispatch(addCart(cartData));
     }
-    return;
   };
 
-  const handleMin = () => {
+  const handleMin = (e) => {
+    e.preventDefault();
+
     if (countMenu > 0) {
       setCountMenu(countMenu - 1);
     }
   };
 
-  const handlePlus = () => {
+  const handlePlus = (e) => {
+    e.preventDefault();
     setCountMenu(countMenu + 1);
   };
 
