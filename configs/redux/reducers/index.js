@@ -4,6 +4,7 @@ import menuReducers from "./menu";
 import cartReducer from "./cart";
 import voucherReducers from "./voucher";
 import diskonReducers from "./diskon";
+import queueReducers from "./queue";
 
 const reducers = {
   user: userReducers,
@@ -11,6 +12,7 @@ const reducers = {
   cart: cartReducer,
   voucher: voucherReducers,
   diskon: diskonReducers,
+  queue: queueReducers,
 };
 
 export default combineReducers(reducers);

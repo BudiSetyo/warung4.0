@@ -8,4 +8,7 @@ export const actionTypes = {
   // Diskon
   ADD_DISKON: "ADD_DISKON",
   CANCEL_DISKON: "CANCEL_DISKON",
+
+  // Queue
+  ADD_QUEUE: "ADD_QUEUE",
 };

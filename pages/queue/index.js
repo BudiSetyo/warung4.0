@@ -1,7 +1,16 @@
 import { MainLayout } from "@/layouts";
 import { Button } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
+import { sumPayment } from "@/helpers";
 
 export default function Queue() {
+  const queueData = useSelector((state) => state.queue);
+  const cartData = useSelector((state) => state.cart);
+  const diskonData = useSelector((state) => state.diskon);
+
+  const totalPayment = sumPayment(cartData);
+  const diskon = diskonData.diskon;
+
   return (
     <MainLayout>
       <main className="px-6 pt-20 pb-8">
@@ -16,7 +25,7 @@ export default function Queue() {
 
         <section className="flex justify-center mt-7">
           <div className="flex justify-center items-center w-[160px] min-w-[160px] h-[160px] bg-yellow-400 rounded-full border-2 border-yellow-500">
-            <h1 className="text-7xl text-gray-700">26</h1>
+            <h1 className="text-7xl text-gray-700">{queueData}</h1>
           </div>
         </section>
 
@@ -36,17 +45,17 @@ export default function Queue() {
 
           <div className="w-full flex justify-between mt-2">
             <p>Harga</p>
-            <p>216.000</p>
+            <p>{totalPayment}</p>
           </div>
 
           <div className="w-full flex justify-between mt-2 border-b-2 pb-2">
             <p>Diskon</p>
-            <p>- 24.000</p>
+            <p>- {diskon.diskon}</p>
           </div>
 
           <div className="w-full flex justify-between mt-2 border-b-2 pb-2">
             <p className="text-lg font-bold">Total</p>
-            <p className="text-lg font-bold">192.000</p>
+            <p className="text-lg font-bold">{totalPayment - diskon.diskon}</p>
           </div>
 
           <div className="mt-2">

@@ -2,9 +2,17 @@ import { MainLayout } from "@/layouts";
 import { Navbar } from "@/components";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { addQueue } from "@/configs";
 
 export default function Payment() {
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  const handleNav = () => {
+    dispatch(addQueue());
+    return router.push("/queue");
+  };
   return (
     <MainLayout>
       <Navbar page="Pilih Pembayaran" />
@@ -29,10 +37,7 @@ export default function Payment() {
             </div>
           </div>
 
-          <div
-            onClick={() => router.push("/queue")}
-            className="flex border-b-2 py-4"
-          >
+          <div onClick={handleNav} className="flex border-b-2 py-4">
             <div className="w-1/6 h-8">
               <img
                 alt="cash"
