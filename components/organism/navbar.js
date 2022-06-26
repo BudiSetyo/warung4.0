@@ -4,11 +4,22 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 import { Container } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { cancelDiskon } from "@/configs";
 
-const Navbar = ({ page, cart }) => {
+const Navbar = ({ page, cart, clearDiskon }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const cartData = useSelector((state) => state.cart);
+
+  const handleBack = () => {
+    if (clearDiskon === true) {
+      dispatch(cancelDiskon());
+      return router.push("/menu");
+    }
+    return router.back();
+  };
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-10">
@@ -27,9 +38,7 @@ const Navbar = ({ page, cart }) => {
               <>
                 <div className="flex">
                   <IconButton
-                    onClick={() => {
-                      return router.back();
-                    }}
+                    onClick={handleBack}
                     className="mr-2.5"
                     colorScheme="white"
                     icon={<ArrowBackIcon boxSize={6} color="#000000CC" />}

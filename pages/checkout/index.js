@@ -9,6 +9,7 @@ import { IconButton, Button, Select } from "@chakra-ui/react";
 import { Footer, Navbar } from "@/components";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import { sumPayment } from "@/helpers";
 
 export default function Menu() {
   const cartData = useSelector((state) => state.cart);
@@ -16,14 +17,13 @@ export default function Menu() {
 
   const router = useRouter();
 
-  const totalPayment = cartData?.map((item) => item.price * item.count);
-  const sumPayment = totalPayment.reduce((total, index) => total + index);
+  const diskon = diskonData.diskon;
 
-  const diskon = diskonData?.diskon;
+  const totalPayment = sumPayment(cartData);
 
   return (
     <MainLayout>
-      <Navbar cart={false} page="Checkout" />
+      <Navbar clearDiskon={true} cart={false} page="Checkout" />
       <main className="bg-[#F7FAFC] pt-16 mb-4 scroll-smooth">
         <section className="pt-4 mb-4 bg-white">
           <section>
@@ -39,46 +39,60 @@ export default function Menu() {
             <h1 className="text-xl font-bold">Daftar Pesanan</h1>
 
             <section className="px-6">
-              {cartData?.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    className={`flex py-4 ${
-                      index === cartData.length - 1 ? "" : "border-b-2"
-                    }`}
-                  >
-                    <div className="w-[160px] min-w-[160px] h-[160px] p-2">
-                      <img
-                        alt="uduk"
-                        className="h-full w-full object-contain"
-                        src={`/assets/images/menu/${item.img}.svg`}
-                      />
-                    </div>
+              {cartData.length !== 0 ? (
+                <>
+                  {cartData?.map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className={`flex py-4 ${
+                          index === cartData.length - 1 ? "" : "border-b-2"
+                        }`}
+                      >
+                        <div className="w-[160px] min-w-[160px] h-[160px] p-2">
+                          <img
+                            alt="uduk"
+                            className="h-full w-full object-contain"
+                            src={`/assets/images/menu/${item.img}.svg`}
+                          />
+                        </div>
 
-                    <div className={`flex flex-col justify-around p-4 ml-4`}>
-                      <h1 className="text-xl font-bold">{item.name}</h1>
-                      <p>Rp. {item.price}</p>
-                      <div className="flex items-center">
-                        <IconButton
-                          size={"sm"}
-                          colorScheme={"teal"}
-                          variant={"outline"}
-                          isRound={true}
-                          icon={<MinusIcon />}
-                        />
-                        <p className="px-5 text-lg font-bold">{item.count}</p>
-                        <IconButton
-                          size={"sm"}
-                          colorScheme={"teal"}
-                          variant={"outline"}
-                          isRound={true}
-                          icon={<AddIcon />}
-                        />
+                        <div
+                          className={`flex flex-col justify-around p-4 ml-4`}
+                        >
+                          <h1 className="text-xl font-bold">{item.name}</h1>
+                          <p>Rp. {item.price}</p>
+                          <div className="flex items-center">
+                            <IconButton
+                              size={"sm"}
+                              colorScheme={"teal"}
+                              variant={"outline"}
+                              isRound={true}
+                              icon={<MinusIcon />}
+                            />
+                            <p className="px-5 text-lg font-bold">
+                              {item.count}
+                            </p>
+                            <IconButton
+                              size={"sm"}
+                              colorScheme={"teal"}
+                              variant={"outline"}
+                              isRound={true}
+                              icon={<AddIcon />}
+                            />
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    );
+                  })}
+                </>
+              ) : (
+                <>
+                  <div className="py-5">
+                    <h1>Kamu belum memesan makanan</h1>
                   </div>
-                );
-              })}
+                </>
+              )}
             </section>
           </section>
         </section>
@@ -97,7 +111,7 @@ export default function Menu() {
           <div className="border-b-2 mb-4">
             <div className="flex justify-between pb-4">
               <p>Harga</p>
-              <p>{sumPayment}</p>
+              <p>{totalPayment}</p>
             </div>
             <div className="flex justify-between pb-4">
               <p>Diskon</p>
@@ -107,7 +121,11 @@ export default function Menu() {
           <div>
             <div className="flex justify-between">
               <p className="text-xl font-bold">Total Pembayaran</p>
-              <p className="text-xl font-bold">{sumPayment - diskon.diskon}</p>
+              <p className="text-xl font-bold">
+                {totalPayment - diskon.diskon < 0
+                  ? 0
+                  : totalPayment - diskon.diskon}
+              </p>
             </div>
           </div>
         </section>
@@ -125,14 +143,16 @@ export default function Menu() {
             variant="outline"
           >
             <div>
-              {diskon ? (
+              {diskon.diskon !== 0 ? (
                 <>
                   <h1 className="text-xl text-gray-600">{`Kode: ${diskon.code}`}</h1>
                 </>
               ) : (
                 <>
-                  <p>Makin Hemat Pakai Voucher</p>
-                  <ChevronRightIcon boxSize={5} />
+                  <div className="flex">
+                    <p>Makin Hemat Pakai Voucher</p>
+                    <ChevronRightIcon boxSize={5} />
+                  </div>
                 </>
               )}
             </div>
@@ -141,7 +161,12 @@ export default function Menu() {
         <div className="flex">
           <div className="w-1/2">
             <p>Total Tagihan</p>
-            <p className="text-xl font-bold">Rp {sumPayment - diskon.diskon}</p>
+            <p className="text-xl font-bold">
+              Rp{" "}
+              {totalPayment - diskon.diskon < 0
+                ? 0
+                : totalPayment - diskon.diskon}
+            </p>
           </div>
           <div className="w-full flex items-center">
             <Button

@@ -6,33 +6,66 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addDiskon } from "@/configs";
 import { useRouter } from "next/router";
+import { sumPayment } from "@/helpers";
 
 export default function Voucher() {
-  const voucher = useSelector((state) => state.voucher);
+  const voucherData = useSelector((state) => state.voucher);
+  const cartData = useSelector((state) => state.cart);
 
   const [diskonIndex, setDiskonIndex] = useState();
   const [diskon, setDiskon] = useState({});
+  const [search, setSearch] = useState("");
+  const [warning, setWarning] = useState("");
 
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const totalPayment = sumPayment(cartData);
+
+  const handleAddDiskon = (e) => {
+    e.preventDefault();
+
+    if (totalPayment < diskon.minimum) {
+      return setWarning("Minimum belanja kurang!");
+    }
+
+    if (diskon.diskon === undefined) {
+      return setWarning("Pilih voucher dulu!");
+    }
+
+    dispatch(addDiskon(diskon));
+    return router.push("/checkout");
+  };
+
+  const sortAndFilter = (data, searchString) => {
+    const newData = data.filter(
+      (item) =>
+        (item.code || "")
+          .toLowerCase()
+          .indexOf((searchString || "").toLowerCase()) !== -1
+    );
+
+    return newData;
+  };
 
   return (
     <MainLayout>
       <Navbar page="Voucher" />
       <main className="pt-20">
         <div className="sticky top-[72px] pb-1 bg-white">
-          <Search />
+          <Search value={search} onChange={(e) => setSearch(e.target.value)} />
         </div>
 
         <section className="mt-4">
           <h1 className="text-xl font-bold mb-4">Pilih Promo</h1>
 
           <section className="pb-32">
-            {voucher?.map((item, index) => {
+            {(sortAndFilter(voucherData, search) || []).map((item, index) => {
               return (
                 <div
                   onClick={(e) => {
                     e.preventDefault();
+                    setWarning("");
                     setDiskonIndex(index);
                     setDiskon({
                       diskon: item.diskon,
@@ -60,13 +93,17 @@ export default function Voucher() {
       </main>
       <Footer>
         <section>
-          <h1 className="mb-3">Kamu bisa hemat Rp 0</h1>
+          {warning !== "" ? (
+            <>
+              <h1 className="mb-3 text-red-500">{warning}</h1>
+            </>
+          ) : (
+            <>
+              <h1 className="mb-3">Kamu bisa hemat Rp {diskon.diskon || 0}</h1>
+            </>
+          )}
           <Button
-            onClick={(e) => {
-              e.preventDefault();
-              dispatch(addDiskon(diskon));
-              return router.push("/checkout");
-            }}
+            onClick={handleAddDiskon}
             colorScheme={"teal"}
             className="w-full"
           >

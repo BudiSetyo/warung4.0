@@ -3,20 +3,7 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
 import rootReducers from "../redux/reducers/index";
-import dummyData from "../../helpers/dummyData/menu.json";
-import dummyVoucher from "../../helpers/dummyData/voucher.json";
-import idGenerator from "helpers/idGenerator";
-
-const menuData = dummyData.map((item) => {
-  return {
-    id: idGenerator(),
-    name: item.name,
-    description: item.description,
-    price: item.price,
-    category: item.category,
-    img: item.img,
-  };
-});
+import { menuData, voucherData } from "@/helpers";
 
 const persistConfig = {
   key: "root",
@@ -31,7 +18,7 @@ const store = configureStore({
   middleware: [thunk],
   preloadedState: {
     menu: menuData,
-    voucher: dummyVoucher,
+    voucher: voucherData,
   },
 });
 

@@ -1,5 +1,9 @@
 const initialValue = {
-  diskon: {},
+  diskon: {
+    diskon: 0,
+    minimum: 0,
+    code: "",
+  },
 };
 const diskonReducers = (state = initialValue, action) => {
   switch (action.type) {
@@ -7,6 +11,16 @@ const diskonReducers = (state = initialValue, action) => {
       return {
         ...state,
         diskon: action.payload,
+      };
+
+    case "CANCEL_DISKON":
+      return {
+        ...state,
+        diskon: {
+          diskon: 0,
+          minimum: 0,
+          code: "",
+        },
       };
 
     default:

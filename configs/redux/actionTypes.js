@@ -7,4 +7,5 @@ export const actionTypes = {
 
   // Diskon
   ADD_DISKON: "ADD_DISKON",
+  CANCEL_DISKON: "CANCEL_DISKON",
 };

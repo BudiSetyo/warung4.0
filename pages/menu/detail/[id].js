@@ -39,7 +39,8 @@ export default function Id() {
           count: countMenu,
         },
       ]);
-      return dispatch(addCart(cartData));
+      dispatch(addCart(cartData));
+      return;
     }
   };
 
