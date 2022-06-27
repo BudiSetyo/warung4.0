@@ -1,47 +1,87 @@
 import { IconButton, Icon } from "@chakra-ui/react";
 import { BiCart } from "react-icons/bi";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import { Container } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { cancelDiskon } from "@/configs";
 
-const Navbar = ({ page, cart }) => {
+const Navbar = ({ page, cart, clearDiskon }) => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const cartData = useSelector((state) => state.cart);
+
+  const handleBack = () => {
+    if (clearDiskon === true) {
+      dispatch(cancelDiskon());
+      return router.push("/menu");
+    }
+    return router.back();
+  };
   return (
     <>
-      <nav className="sticky top-0 bg-white">
-        <div className="flex justify-between py-4">
-          {window.location.pathname === "/menu" ? (
-            <>
-              <div>
-                <img src="/assets/images/navbar-logo.svg"></img>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="flex">
-                <IconButton
-                  className="mr-2.5"
-                  colorScheme="white"
-                  icon={<ArrowBackIcon boxSize={6} color="#000000CC" />}
-                />
-
-                <div className="flex items-center">
-                  <h1 className="font-bold text-xl">{page || "Page"}</h1>
+      <nav className="fixed top-0 left-0 right-0 z-10">
+        <Container maxW={"600px"} className="bg-white ">
+          <div className="flex justify-between py-4">
+            {window.location.pathname === "/menu" ? (
+              <>
+                <div>
+                  <img
+                    alt="navbar-logo"
+                    src="/assets/images/navbar-logo.svg"
+                  ></img>
                 </div>
-              </div>
-            </>
-          )}
+              </>
+            ) : (
+              <>
+                <div className="flex">
+                  <IconButton
+                    onClick={handleBack}
+                    className="mr-2.5"
+                    colorScheme="white"
+                    icon={<ArrowBackIcon boxSize={6} color="#000000CC" />}
+                  />
+                  <div className="flex items-center">
+                    <h1 className="font-bold text-xl">{page || "Page"}</h1>
+                  </div>
+                </div>
+              </>
+            )}
 
-          {cart === true ? (
-            <>
-              <div>
-                <IconButton
-                  colorScheme="white"
-                  icon={<Icon boxSize={8} as={BiCart} color="#000000CC" />}
-                />
-              </div>
-            </>
-          ) : (
-            <></>
-          )}
-        </div>
+            {cart === true ? (
+              <>
+                <div>
+                  <IconButton
+                    onClick={() => {
+                      return router.push("/checkout");
+                    }}
+                    className="relative"
+                    colorScheme="white"
+                  >
+                    {cartData.length === 0 ? (
+                      <>
+                        <Icon boxSize={8} as={BiCart} color="#000000CC" />
+                      </>
+                    ) : (
+                      <>
+                        <div className="absolute h-5 w-5 top-0 right-0 rounded-full bg-yellow-400">
+                          <p className="text-sm text-center">
+                            {cartData.length}
+                          </p>
+                        </div>
+                        <Icon boxSize={8} as={BiCart} color="#000000CC" />
+                      </>
+                    )}
+                  </IconButton>
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
+        </Container>
       </nav>
     </>
   );

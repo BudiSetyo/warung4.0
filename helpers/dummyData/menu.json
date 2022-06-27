@@ -1,0 +1,100 @@
+[
+  {
+    "name": "DAHSYAT 1",
+    "description": "NASI + AYAM SAYAP/PAHA BAWAH",
+    "price": 11000,
+    "img": "dahsyat-1",
+    "category": "dahsyat"
+  },
+  {
+    "name": "DAHSYAT 2",
+    "description": "NASI + AYAM DADA/PAHA ATAS",
+    "price": 14000,
+    "img": "dahsyat-2",
+    "category": "dahsyat"
+  },
+  {
+    "name": "PAKET 1",
+    "description": "NASI + AYAM SAYAP/PAHA BAWAH + MINUM",
+    "price": 14000,
+    "img": "paket-1",
+    "category": "paket"
+  },
+  {
+    "name": "PAKET 2",
+    "description": "NASI + AYAM DADA/PAHA ATAS + MINUM",
+    "price": 16000,
+    "img": "paket-2",
+    "category": "paket"
+  },
+  {
+    "name": "NASI GEPREK KECIL",
+    "description": "NASI + AYAM GEPREK SAYAP/PAHA BAWAH",
+    "price": 13000,
+    "img": "nasi-geprek-kecil",
+    "category": "geprek"
+  },
+  {
+    "name": "NASI GEPREK BESAR",
+    "description": "NASI + AYAM GEPREK DADA/PAHA ATAS",
+    "price": 16000,
+    "img": "nasi-geprek-besar",
+    "category": "geprek"
+  },
+  {
+    "name": "PAKET GEPREK KECIL",
+    "description": "NASI + GEPREK SAYAP/PAHA BAWAH + MINUM",
+    "price": 15000,
+    "img": "paket-geprek-kecil",
+    "category": "paket"
+  },
+  {
+    "name": "PAKET GEPREK BESAR",
+    "description": "NASI + GEPREK DADA/PAHA ATAS + MINUM",
+    "price": 18000,
+    "img": "paket-geprek-besar",
+    "category": "paket"
+  },
+  {
+    "name": "HOT DOG",
+    "description": "-",
+    "price": 10000,
+    "img": "hot-dog",
+    "category": "western"
+  },
+  {
+    "name": "BURGER",
+    "description": "-",
+    "price": 13000,
+    "img": "burger",
+    "category": "western"
+  },
+  {
+    "name": "FRENCH FRIES",
+    "description": "-",
+    "price": 1000,
+    "img": "french-fries",
+    "category": "western"
+  },
+  {
+    "name": "SPAGHETI",
+    "description": "-",
+    "price": 10000,
+    "img": "spagheti",
+    "category": "western"
+  },
+  {
+    "name": "ES TEH",
+    "description": "-",
+    "price": 3000,
+    "img": "es-teh",
+    "category": "drink"
+  },
+  {
+    "name": "MINERAL WATER",
+    "description": "-",
+    "price": 3000,
+    "img": "mineral-water",
+    "category": "drink"
+  }
+]
