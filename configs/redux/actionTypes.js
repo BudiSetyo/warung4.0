@@ -5,6 +5,7 @@ export const actionTypes = {
 
   // Cart
   ADD_CART: "ADD_CART",
+  CHANGE_COUNT: "CHANGE_COUNNT",
   DELETE_CART: "DELETE_CART",
 
   // Diskon

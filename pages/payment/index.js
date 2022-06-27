@@ -23,7 +23,7 @@ export default function Payment() {
         <section className="mt-2 py-2">
           <div
             onClick={() => router.push("/completePayment")}
-            className="flex border-b-2 py-4"
+            className="flex border-b-2 py-4 cursor-pointer"
           >
             <div className="w-1/6 h-8">
               <img
@@ -38,7 +38,10 @@ export default function Payment() {
             </div>
           </div>
 
-          <div onClick={handleNav} className="flex border-b-2 py-4">
+          <div
+            onClick={handleNav}
+            className="flex border-b-2 py-4 cursor-pointer"
+          >
             <div className="w-1/6 h-8">
               <img
                 alt="cash"

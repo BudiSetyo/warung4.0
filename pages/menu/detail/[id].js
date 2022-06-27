@@ -7,11 +7,10 @@ import { IconButton, Button } from "@chakra-ui/react";
 
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addCart } from "@/configs";
+import { changeCounnt } from "@/configs";
 
 export default function Id() {
   const [countMenu, setCountMenu] = useState(0);
-  const [cartData, setCartData] = useState([]);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -23,23 +22,18 @@ export default function Id() {
     return item.id === menuId;
   })[0];
 
-  const cart = useSelector((state) => state.cart);
-  console.log(cart);
+  // const cart = useSelector((state) => state.cart);
 
   const handleCart = (e) => {
     e.preventDefault();
 
     if (countMenu !== 0) {
-      setCartData([
-        {
-          id: detailMenu?.id,
-          name: detailMenu?.name,
-          price: detailMenu?.price,
-          img: detailMenu?.img,
-          count: countMenu,
-        },
-      ]);
-      dispatch(addCart(cartData));
+      const data = {
+        ...detailMenu,
+        count: countMenu,
+      };
+      dispatch(changeCounnt(data));
+      router.push("/menu");
       return;
     }
   };
@@ -109,6 +103,7 @@ export default function Id() {
             onClick={handleCart}
             className="w-full mt-6"
             colorScheme={"teal"}
+            disabled={countMenu < 1}
           >
             Tambah Pesanan - {countMenu * detailMenu?.price}
           </Button>
