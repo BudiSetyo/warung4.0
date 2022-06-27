@@ -11,11 +11,16 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { sumPayment } from "@/helpers";
 import { changeCounnt, cancelDiskon } from "@/configs";
+import { useState } from "react";
 
 export default function Menu() {
   const dispatch = useDispatch();
   const cartData = useSelector((state) => state.cart);
   const diskonData = useSelector((state) => state.diskon);
+
+  const [place, setPlace] = useState("");
+
+  console.log(place);
 
   const router = useRouter();
 
@@ -123,9 +128,14 @@ export default function Menu() {
 
         <section className="px-4 py-3 mb-4 bg-white">
           <h1 className="mb-2">Mau makan dimana?</h1>
-          <Select placeholder="Pilih mau makan dimana">
-            <option value="option1">Dibungkus</option>
-            <option value="option2">Makan ditempat</option>
+          <Select
+            onChange={(e) => {
+              setPlace(e.target.value);
+            }}
+            placeholder="Pilih mau makan dimana"
+          >
+            <option value="dibungkus">Dibungkus</option>
+            <option value="ditempat">Makan ditempat</option>
           </Select>
           <p className="mt-2 text-red-600">Harus dipilih</p>
         </section>
@@ -194,6 +204,7 @@ export default function Menu() {
           </div>
           <div className="w-full flex items-center">
             <Button
+              disabled={place === "" || totalPayment === 0 ? true : false}
               onClick={(e) => {
                 e.preventDefault;
                 return router.push("/payment");
