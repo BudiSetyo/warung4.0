@@ -1,7 +1,7 @@
 import { actionTypes } from "@/configs";
 
-export const addCart = (data) => (dispatch) => {
-  return dispatch({ type: actionTypes.ADD_CART, payload: data });
+export const changeCounnt = (data) => (dispatch) => {
+  return dispatch({ type: actionTypes.CHANGE_COUNT, payload: data });
 };
 
 export const deleteCart = () => (dispatch) => {

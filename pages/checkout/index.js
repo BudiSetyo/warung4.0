@@ -8,10 +8,12 @@ import {
 import { IconButton, Button, Select } from "@chakra-ui/react";
 import { Footer, Navbar } from "@/components";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { sumPayment } from "@/helpers";
+import { changeCounnt } from "@/configs";
 
 export default function Menu() {
+  const dispatch = useDispatch();
   const cartData = useSelector((state) => state.cart);
   const diskonData = useSelector((state) => state.diskon);
 
@@ -69,6 +71,23 @@ export default function Menu() {
                               variant={"outline"}
                               isRound={true}
                               icon={<MinusIcon />}
+                              onClick={() => {
+                                if (item.count - 1 < 1) {
+                                  if (
+                                    confirm(
+                                      `Apakah kamu yakin ingin menghapus ${item.name}?`
+                                    )
+                                  ) {
+                                    dispatch(
+                                      changeCounnt({ ...item, count: -1 })
+                                    );
+                                  }
+                                } else {
+                                  dispatch(
+                                    changeCounnt({ ...item, count: -1 })
+                                  );
+                                }
+                              }}
                             />
                             <p className="px-5 text-lg font-bold">
                               {item.count}
@@ -79,6 +98,9 @@ export default function Menu() {
                               variant={"outline"}
                               isRound={true}
                               icon={<AddIcon />}
+                              onClick={() => {
+                                dispatch(changeCounnt({ ...item, count: 1 }));
+                              }}
                             />
                           </div>
                         </div>
