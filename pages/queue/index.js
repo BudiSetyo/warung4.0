@@ -21,7 +21,7 @@ export default function Queue() {
   const handleNav = () => {
     dispatch(userLogout());
     dispatch(deleteCart());
-    dispatch(cancelDiskon);
+    dispatch(cancelDiskon());
     return router.push("/");
   };
 
