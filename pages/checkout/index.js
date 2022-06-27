@@ -20,8 +20,6 @@ export default function Menu() {
 
   const [place, setPlace] = useState("");
 
-  console.log(place);
-
   const router = useRouter();
 
   const diskon = diskonData.diskon;
