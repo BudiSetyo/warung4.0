@@ -2,9 +2,18 @@ import { MainLayout } from "@/layouts";
 import { Navbar } from "@/components";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import moment from "moment";
+import { useDispatch } from "react-redux";
+import { addPayment } from "@/configs";
 
 export default function CompletePayment() {
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  const handleNav = () => {
+    dispatch(addPayment("Bayar menggunakan QR"));
+    return router.push("/queue");
+  };
   return (
     <MainLayout>
       <Navbar page={"Pilih Pembayaran"} />
@@ -12,7 +21,9 @@ export default function CompletePayment() {
         <section className="px-6 pt-8 pb-4 bg-white">
           <div>
             <p className="mb-2">Batas akhir pembayaran</p>
-            <h1 className="text-xl font-bold">Senin, 13 Juni 2022 16: 37</h1>
+            <h1 className="text-xl font-bold">
+              {moment().add(1, "days").format("dddd, DD MMMM YYYY hh:mm")}
+            </h1>
           </div>
         </section>
 
@@ -38,11 +49,7 @@ export default function CompletePayment() {
           </div>
 
           <div className="mt-2 pb-6">
-            <Button
-              onClick={() => router.push("/queue")}
-              className="w-full"
-              colorScheme={"teal"}
-            >
+            <Button onClick={handleNav} className="w-full" colorScheme={"teal"}>
               Bayar Sekarang
             </Button>
           </div>

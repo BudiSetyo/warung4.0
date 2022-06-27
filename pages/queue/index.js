@@ -2,14 +2,28 @@ import { MainLayout } from "@/layouts";
 import { Button } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { sumPayment } from "@/helpers";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { userLogout, deleteCart, cancelDiskon } from "@/configs";
 
 export default function Queue() {
   const queueData = useSelector((state) => state.queue);
   const cartData = useSelector((state) => state.cart);
   const diskonData = useSelector((state) => state.diskon);
+  const paymentData = useSelector((state) => state.payment);
 
   const totalPayment = sumPayment(cartData);
   const diskon = diskonData.diskon;
+
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleNav = () => {
+    dispatch(userLogout());
+    dispatch(deleteCart());
+    dispatch(cancelDiskon);
+    return router.push("/");
+  };
 
   return (
     <MainLayout>
@@ -39,7 +53,7 @@ export default function Queue() {
               <p>Metode Pembayaran</p>
             </div>
             <div className="w-1/2">
-              <p>Bayar di kasir (Segera selesaikan pembayaranmu)</p>
+              <p>{paymentData.method} (Segera selesaikan pembayaranmu)</p>
             </div>
           </div>
 
@@ -59,7 +73,7 @@ export default function Queue() {
           </div>
 
           <div className="mt-2">
-            <Button className="w-full" colorScheme={"teal"}>
+            <Button onClick={handleNav} className="w-full" colorScheme={"teal"}>
               Kembali ke halaman utama
             </Button>
           </div>

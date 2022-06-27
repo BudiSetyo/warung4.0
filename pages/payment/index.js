@@ -3,7 +3,7 @@ import { Navbar } from "@/components";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { addQueue } from "@/configs";
+import { addQueue, addPayment } from "@/configs";
 
 export default function Payment() {
   const router = useRouter();
@@ -11,6 +11,7 @@ export default function Payment() {
 
   const handleNav = () => {
     dispatch(addQueue());
+    dispatch(addPayment("Bayar di kasir"));
     return router.push("/queue");
   };
   return (

@@ -9,6 +9,12 @@ const userReducer = (state = initialValue, action) => {
         userName: action.payload,
       };
 
+    case "USER_LOGOUT":
+      return {
+        ...state,
+        userName: "",
+      };
+
     default:
       return state;
   }

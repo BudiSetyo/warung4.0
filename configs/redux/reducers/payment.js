@@ -4,7 +4,7 @@ const initialValue = {
 
 const paymentReducers = (state = initialValue, action) => {
   switch (action.type) {
-    case "ADD_METHOD":
+    case "ADD_PAYMENT":
       return {
         ...state,
         method: action.payload,
