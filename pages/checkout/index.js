@@ -10,7 +10,7 @@ import { Footer, Navbar } from "@/components";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { sumPayment } from "@/helpers";
-import { changeCounnt } from "@/configs";
+import { changeCounnt, cancelDiskon } from "@/configs";
 
 export default function Menu() {
   const dispatch = useDispatch();
@@ -72,6 +72,7 @@ export default function Menu() {
                               isRound={true}
                               icon={<MinusIcon />}
                               onClick={() => {
+                                dispatch(cancelDiskon());
                                 if (item.count - 1 < 1) {
                                   if (
                                     confirm(
@@ -99,6 +100,7 @@ export default function Menu() {
                               isRound={true}
                               icon={<AddIcon />}
                               onClick={() => {
+                                dispatch(cancelDiskon());
                                 dispatch(changeCounnt({ ...item, count: 1 }));
                               }}
                             />

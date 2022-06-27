@@ -53,7 +53,13 @@ export default function Queue() {
               <p>Metode Pembayaran</p>
             </div>
             <div className="w-1/2">
-              <p>{paymentData.method} (Segera selesaikan pembayaranmu)</p>
+              <p className="text-right">
+                {paymentData.method === "Bayar di kasir" ? (
+                  <>{paymentData.method} (Segera selesaikan pembayaranmu)</>
+                ) : (
+                  <>{paymentData.method}</>
+                )}
+              </p>
             </div>
           </div>
 
