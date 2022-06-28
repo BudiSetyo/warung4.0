@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/BudiSetyo/warung4.0">
-    <img src="./public/assets/images/main-logo.svg" alt="Logo" width="90" height="90">
+    <img src="./public/assets/images/main-logo.svg" alt="Logo" width="200" height="200">
   </a>
 
   <h3 align="center">Warung 4.0</h3>
@@ -41,7 +41,7 @@
 
 ## About The Project
 
-This is a front-end project built using React Native which is based on an online wallet application.
+This is a simple application with the concept of a trending food sale.
 
 ### Built With
 
