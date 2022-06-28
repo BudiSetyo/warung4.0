@@ -77,31 +77,26 @@ This is a simple application with the concept of a trending food sale.
 ## Screenshots
 
 <div align="center">
+    <img width="350" src="./public/assets/screenshot/home.PNG">   
+</div>
+<div align="center">
     <img width="350" src="./public/assets/screenshot/menu.PNG">   
 </div>
-<!-- <div align="center">
-    <img width="700" src="https://res.cloudinary.com/emhaarifin/image/upload/v1633024586/github/vehicle/3_3_axbcgq.png">   
+<div align="center">
+    <img width="350" src="./public/assets/screenshot/menu-filed.PNG">   
 </div>
 <div align="center">
-    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1633027186/github/vehicle/4_sk0hxl.png">   
-    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1633021827/github/vehicle/5_sbyfcq.png">
+    <img width="350" src="./public/assets/screenshot/checkout.PNG">   
 </div>
 <div align="center">
-    <img width="700" src="https://res.cloudinary.com/emhaarifin/image/upload/v1633021609/github/vehicle/6_lpowph.png">   
-</div>
-<div align="center">  
-    <img width="700" src="https://res.cloudinary.com/emhaarifin/image/upload/v1633024961/github/vehicle/screenshot_ddpqwd.png">
-</div>
-<div align="center">  
-    <img width="700" src="https://res.cloudinary.com/emhaarifin/image/upload/v1633025193/github/vehicle/screenshot_1_bjquxc.png">
-</div> -->
-
-<!-- **Admin**
-
-<div align="center">
-    <img width="700" src="https://res.cloudinary.com/emhaarifin/image/upload/v1633025515/github/vehicle/screenshot_1_enrmai.png">
+    <img width="350" src="./public/assets/screenshot/diskon.PNG">   
 </div>
 <div align="center">
-    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1633021604/github/vehicle/10_lhkhk4.png">
-    <img width="350" src="https://res.cloudinary.com/emhaarifin/image/upload/v1633021606/github/vehicle/12_e4doob.png">
-</div> -->
+    <img width="350" src="./public/assets/screenshot/payment.PNG">   
+</div>
+<div align="center">
+    <img width="350" src="./public/assets/screenshot/qr.PNG"> 
+</div>
+<div align="center">
+    <img width="350" src="./public/assets/screenshot/queue.PNG">   
+</div>
