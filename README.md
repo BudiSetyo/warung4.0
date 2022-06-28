@@ -32,7 +32,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#screenshots">Screenshots</a></li>
 
   </ol>
 </details>
@@ -74,7 +74,7 @@ This is a simple application with the concept of a trending food sale.
     type npm run dev or yarn dev
    ```
 
-## Screenshots
+### Screenshots
 
 <div align="center">
     <img width="500" src="./public/assets/screenshot/home.PNG">   
