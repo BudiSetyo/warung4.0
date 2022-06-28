@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/BudiSetyo/warung4.0">
-    <img src="/assets/images/main-logo.svg" alt="Logo" width="90" height="90">
+    <img src="./public/assets/images/main-logo.svg" alt="Logo" width="90" height="90">
   </a>
 
   <h3 align="center">Warung 4.0</h3>
