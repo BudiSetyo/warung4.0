@@ -77,26 +77,26 @@ This is a simple application with the concept of a trending food sale.
 ## Screenshots
 
 <div align="center">
-    <img width="350" src="./public/assets/screenshot/home.PNG">   
+    <img width="500" src="./public/assets/screenshot/home.PNG">   
 </div>
 <div align="center">
-    <img width="350" src="./public/assets/screenshot/menu.PNG">   
+    <img width="500" src="./public/assets/screenshot/menu.PNG">   
 </div>
 <div align="center">
-    <img width="350" src="./public/assets/screenshot/menu-filed.PNG">   
+    <img width="500" src="./public/assets/screenshot/menu-filed.PNG">   
 </div>
 <div align="center">
-    <img width="350" src="./public/assets/screenshot/checkout.PNG">   
+    <img width="500" src="./public/assets/screenshot/checkout.PNG">   
 </div>
 <div align="center">
-    <img width="350" src="./public/assets/screenshot/diskon.PNG">   
+    <img width="500" src="./public/assets/screenshot/diskon.PNG">   
 </div>
 <div align="center">
-    <img width="350" src="./public/assets/screenshot/payment.PNG">   
+    <img width="500" src="./public/assets/screenshot/payment.PNG">   
 </div>
 <div align="center">
-    <img width="350" src="./public/assets/screenshot/qr.PNG"> 
+    <img width="500" src="./public/assets/screenshot/qr.PNG"> 
 </div>
 <div align="center">
-    <img width="350" src="./public/assets/screenshot/queue.PNG">   
+    <img width="500" src="./public/assets/screenshot/queue.PNG">   
 </div>
