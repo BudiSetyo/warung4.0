@@ -77,7 +77,7 @@ This is a simple application with the concept of a trending food sale.
 ## Screenshots
 
 <div align="center">
-    <img width="350" src="./public/assets/screenshot/menu.png">   
+    <img width="350" src="./public/assets/screenshot/menu.PNG">   
 </div>
 <!-- <div align="center">
     <img width="700" src="https://res.cloudinary.com/emhaarifin/image/upload/v1633024586/github/vehicle/3_3_axbcgq.png">   
