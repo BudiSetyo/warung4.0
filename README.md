@@ -87,21 +87,35 @@ This is a simple application with the concept of a trending food sale.
    Install Node Js
    ```
 
-1. Clone the repo
+2. Install yarn
+
+   <div align="center">
+     <img width="500" src="./public/assets/installer/yarn.PNG">   
+   </div>
+
+   ```
+   install global yarn with "npm install --global yarn" and check version "yarn --version"
+   ```
+
+3. Clone the repo
+
+   <div align="center">
+     <img width="500" src="./public/assets/installer/clone.PNG">   
+   </div>
 
    ```
    git clone https://github.com/BudiSetyo/warung4.0.git
    ```
 
-1. Open the folder
+4. Open the folder
 
-1. Install dependencies
+5. Install dependencies
 
    ```
    yarn install
    ```
 
-1. Run the App
+6. Run the App
 
    ```
     yarn dev
