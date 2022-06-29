@@ -45,7 +45,10 @@ This is a simple application with the concept of a trending food sale.
 
 ### Built With
 
+- [Node JS v14.19.1 or Latest](https://nodejs.org/)
 - [Javascript](https://www.w3schools.com/js/DEFAULT.asp)
+- [React JS](https://reactjs.org/)
+- [Next JS](https://nextjs.org/)
 - [Redux](https://redux.js.org/)
 - [Chakra UI](https://chakra-ui.com/)
 - [Tailwind CSS](https://tailwindcss.com/)
@@ -54,24 +57,30 @@ This is a simple application with the concept of a trending food sale.
 
 ### Installation
 
+1. Install Node Js
+
+   <div align="center">
+    <img width="500" src="./public/assets/installer/node.PNG">   
+   </div>
+
 1. Clone the repo
 
-   ```sh
+   ```
    git clone https://github.com/BudiSetyo/warung4.0.git
    ```
 
-2. Open the folder
+1. Open the folder
 
-3. Install dependencies
-
-   ```
-   type npm install or yarn install in terminal
-   ```
-
-4. Run the App
+1. Install dependencies
 
    ```
-    type npm run dev or yarn dev
+   yarn install
+   ```
+
+1. Run the App
+
+   ```
+    yarn dev
    ```
 
 ### Screenshots
