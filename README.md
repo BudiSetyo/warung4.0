@@ -45,10 +45,10 @@ This is a simple application with the concept of a trending food sale.
 
 ### Built With
 
-- [Node JS v14.19.1 or Latest](https://nodejs.org/)
+- [Node Js v14.19.1 or Latest](https://nodejs.org/)
 - [Javascript](https://www.w3schools.com/js/DEFAULT.asp)
-- [React JS](https://reactjs.org/)
-- [Next JS](https://nextjs.org/)
+- [React Js](https://reactjs.org/)
+- [Next Js](https://nextjs.org/)
 - [Redux](https://redux.js.org/)
 - [Chakra UI](https://chakra-ui.com/)
 - [Tailwind CSS](https://tailwindcss.com/)
@@ -59,9 +59,33 @@ This is a simple application with the concept of a trending food sale.
 
 1. Install Node Js
 
+    <div align="center">
+     <img width="500" src="./public/assets/installer/node.PNG">   
+    </div>
+
+   ```
+   Install for windows latest version
+   ```
+
    <div align="center">
-    <img width="500" src="./public/assets/installer/node.PNG">   
+     <img width="500" src="./public/assets/installer/previous-rilis.PNG">   
    </div>
+
+   <div align="center">
+     <img width="500" src="./public/assets/installer/previous-list.PNG">   
+   </div>
+
+   ```
+   Install for windows previous version
+   ```
+
+   <div align="center">
+     <img width="500" src="./public/assets/installer/install-node.PNG">   
+   </div>
+
+   ```
+   Install Node Js
+   ```
 
 1. Clone the repo
 
